@@ -6,3 +6,5 @@ public class Inicio {
         consola.mostrarMenu();
     }
 }
+
+//Prueba
