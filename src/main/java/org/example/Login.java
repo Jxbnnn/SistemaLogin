@@ -4,10 +4,13 @@ public class Login {
     private DatosLogin datos;
 
     public Login() {
-        this.datos = new DatosLogin();
+        datos = new DatosLogin();
     }
 
-    public boolean verificar(String usuario, String contraseña) {
-        return datos.existeUsuario(usuario, contraseña);
+    /**
+     * Verifica usuario y contraseña usando DatosLogin.
+     */
+    public boolean autenticar(String usuario, String contraseña) {
+        return datos.verificarCredenciales(usuario, contraseña);
     }
 }
