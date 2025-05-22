@@ -14,6 +14,13 @@ public class ConsolaLogin {
             String usuario = scanner.nextLine();
             System.out.println("Contraseña: ");
             String contraseña = scanner.nextLine();
+
+            bolean resultado = login.verificar (usuario, contraseña);
+            if (resultado) {
+                System.out.println ("Iniciando sesión ;)");
+            } else {
+                System.out.println ("Acceso denegado :(");
+            }
         }
     }
 }
