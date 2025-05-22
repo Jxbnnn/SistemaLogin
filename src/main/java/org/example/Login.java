@@ -7,7 +7,7 @@ public class Login {
         this.datos = new DatosLogin();
     }
 
-    public boolean verificar(String ususuario, String contraseña) {
+    public boolean verificar(String usuario, String contraseña) {
         return datos.existeUsuario(usuario, contraseña);
     }
 }
