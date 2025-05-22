@@ -20,7 +20,7 @@ public class ConsolaLogin {
             System.out.println("Contraseña: ");
             String contraseña = scanner.nextLine();
 
-            bolean resultado = login.verificar (usuario, contraseña);
+            boolean resultado = login.verificar (usuario, contraseña);
             if (resultado) {
                 System.out.println ("Iniciando sesión ;)");
             } else {
@@ -28,4 +28,4 @@ public class ConsolaLogin {
             }
         }
     }
-}
+
