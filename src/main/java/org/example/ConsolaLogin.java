@@ -1,12 +1,17 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class ConsolaLogin {
     private Login login;
 
     public ConsolaLogin() {
         this.login = new Login ();
+    }
+
         public void mostrarMenu() {
             Scanner scanner = new Scanner(System.in);
+
             System.out.println("----------------------------------");
             System.out.println("    Iniciando sistema de login    ");
             System.out.println("----------------------------------");
