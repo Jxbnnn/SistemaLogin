@@ -1,4 +1,6 @@
-package org.example;
+package Vista;
+
+import Controlador.Login;
 
 import java.util.Scanner;
 
@@ -40,6 +42,8 @@ public class ConsolaLogin {
 
         if (login.autenticar(usuario, contraseña)) {
             System.out.println("Iniciando sesión, " + usuario);
+            SesionActiva sesion = new SesionActiva(usuario);
+            sesion.menuSesion();
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
         }

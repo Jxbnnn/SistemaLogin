@@ -1,4 +1,6 @@
-package org.example;
+package Controlador;
+
+import Modelo.DatosLogin;
 
 public class Login {
     private DatosLogin datos;

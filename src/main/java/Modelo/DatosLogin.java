@@ -1,15 +1,28 @@
-package org.example;
+package Modelo;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class DatosLogin {
     private HashMap<String, String> usuarios = new HashMap<>();
 
     public DatosLogin() {
+        crearArchivosSiNoExiste();
         cargarUsuarios();
+    }
+
+    private void crearArchivosSiNoExiste() {
+        File archivo = new File("login.txt");
+        if (!archivo.exists()){
+            try {
+                archivo.createNewFile();
+                try(FileWriter fw = new FileWriter(archivo,true)) {
+                    fw.write("admin;admin123\n");
+                }
+            }catch (IOException e) {
+                System.err.println("Error al crear el archivo login.txt");
+            }
+        }
     }
 
     private void cargarUsuarios() {
