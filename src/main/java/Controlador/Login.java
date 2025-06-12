@@ -10,6 +10,6 @@ public class Login {
     }
 
     public boolean autenticar(String usuario, String contraseña) {
-        return datos.verificarCredenciales(usuario, contraseña);
+        return datos.autenticar(usuario, contraseña);
     }
 }
