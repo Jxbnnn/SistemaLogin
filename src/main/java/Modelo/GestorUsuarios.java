@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class GestorUsuarios {
@@ -7,15 +10,25 @@ public class GestorUsuarios {
 
     public GestorUsuarios() {
         usuarios = new HashMap<>();
+        cargarUsuariosDesdeArchivo("login.txt");
+    }
 
-        Perfil perfilUsuario1 = new Perfil("usuario1@correo.com");
-        Perfil perfilAdmin = new Perfil("admin@correo.com");
-
-        Usuario usuario1 = new Usuario("usuario1", "1234", perfilUsuario1);
-        Usuario admin = new Usuario("admin", "admin", perfilAdmin);
-
-        usuarios.put("usuario1", usuario1);
-        usuarios.put("admin", admin);
+    private void cargarUsuariosDesdeArchivo(String ruta) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(";");
+                if (partes.length == 2) {
+                    String nombre = partes[0];
+                    String contrasena = partes[1];
+                    Perfil perfil = new Perfil(nombre + "@correo.com");
+                    Usuario usuario = new Usuario(nombre, contrasena, perfil);
+                    usuarios.put(nombre, usuario);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cargar usuarios: " + e.getMessage());
+        }
     }
 
     public Usuario obtenerUsuario(String nombreUsuario) {
