@@ -1,32 +1,18 @@
 package Modelo;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 
-public class DatosLogin{
-    private final ArrayList<Usuario> usuarios = new ArrayList<>();
+public class DatosLogin {
+    private HashMap<String, String> credenciales;
 
-    public DatosLogin(){
-        File archivo = new File("login.txt");
+    public DatosLogin() {
+        credenciales = new HashMap<>();
+        // Simulación de carga de datos
+        credenciales.put("usuario1", "1234");
+        credenciales.put("admin", "admin");
+    }
 
-        if(!archivo.exists()){
-            try{
-                archivo.createNewFile();
-            } catch (IOException e) {
-                System.out.println ("No se pudo crear login.txt");
-            }
-        }
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))){
-            String linea;
-            while ((linea = br.readLine()) !=null){
-                String[] partes = linea.split (";");
-                if(partes.length ==2){
-                    usuarios.add(new Usuario(partes[0],partes[1]));
-                }
-
-            }
-        }catch (IOException e){
-            System.out.println("Error en la lectura de login.txt");
-        }
+    public boolean autenticar(String usuario, String contrasena) {
+        return credenciales.containsKey(usuario) && credenciales.get(usuario).equals(contrasena);
     }
 }

@@ -1,28 +1,31 @@
 package Modelo;
 
-import java.io.*;
+import java.util.HashMap;
 
 public class GestorUsuarios {
+    private HashMap<String, Usuario> usuarios;
 
     public GestorUsuarios() {
-        File archivo = new File("login.txt");
+        usuarios = new HashMap<>();
 
-        if (!archivo.exists()) {
-            try {
-                archivo.createNewFile();
-            } catch (IOException e) {
-                System.out.println("No se pudo crear login.txt");
-            }
-        }
+        // Crear perfiles
+        Perfil perfilUsuario1 = new Perfil("usuario1@correo.com");
+        Perfil perfilAdmin = new Perfil("admin@correo.com");
+
+        // Crear usuarios con perfil
+        Usuario usuario1 = new Usuario("usuario1", "1234", perfilUsuario1);
+        Usuario admin = new Usuario("admin", "admin", perfilAdmin);
+
+        // Agregar al mapa
+        usuarios.put("usuario1", usuario1);
+        usuarios.put("admin", admin);
     }
 
-    public boolean registrar(String nombre, String clave) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("login.txt", true))) {
-            bw.write(nombre + ";" + clave);
-            bw.newLine();
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
+    public Usuario obtenerUsuario(String nombreUsuario) {
+        return usuarios.get(nombreUsuario);
+    }
+
+    public boolean existeUsuario(String nombreUsuario) {
+        return usuarios.containsKey(nombreUsuario);
     }
 }

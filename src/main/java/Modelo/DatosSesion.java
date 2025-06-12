@@ -1,47 +1,48 @@
 package Modelo;
 
-import java.io.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class DatosSesion {
-    private final String archivo;
-    private final ArrayList<Tarea> tareas = new ArrayList<>();
+    private Usuario usuario;
+    private HistorialSesion historial;
 
-    public DatosSesion(String usuario) {
-        this.archivo = usuario + "_todo.txt";
-        File file = new File(archivo);
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("No se pudo crear el archivo de tareas.");
-            }
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                tareas.add(new Tarea(linea));
-            }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo de tareas.");
-        }
+    public DatosSesion(Usuario usuario) {
+        this.usuario = usuario;
+        this.historial = new HistorialSesion();
     }
 
-    public void agregarTarea(String descripcion) {
-        Tarea nueva = new Tarea(descripcion);
-        tareas.add(nueva);
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
-            bw.write(descripcion);
-            bw.newLine();
-        } catch (IOException e) {
-            System.out.println("No se pudo guardar la tarea.");
-        }
+    public void registrarNuevaTarea(Tarea tarea) {
+        usuario.agregarTarea(tarea);
+        historial.registrarNuevaTarea();
     }
 
-    public ArrayList<Tarea> getTareas() {
-        return tareas;
+    public ArrayList<Tarea> getTareasActivas() {
+        return usuario.getTareas().stream()
+                .filter(t -> !t.estaFinalizada())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Tarea> getTareasFinalizadas() {
+        return usuario.getTareas().stream()
+                .filter(Tarea::estaFinalizada)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public boolean finalizarTarea(int indice) {
+        ArrayList<Tarea> activas = getTareasActivas();
+        if (indice >= 0 && indice < activas.size()) {
+            activas.get(indice).marcarFinalizada();
+            return true;
+        }
+        return false;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public HistorialSesion getHistorial() {
+        return historial;
     }
 }

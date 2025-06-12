@@ -1,20 +1,56 @@
 package Modelo;
 
-public class Usuario {
-    private String nombre;
-    private String clave;
+import java.util.ArrayList;
 
-    public Usuario(String nombre, String clave){
-        this.nombre = nombre;
-        this.clave = clave;
+public class Usuario {
+    private String nombreUsuario;
+    private String contrasena;
+    private Perfil perfil;
+    private ArrayList<Tarea> tareas;
+
+    // Constructor por defecto (opcional, por si lo necesitas)
+    public Usuario() {
+        this.tareas = new ArrayList<>();
     }
-    public String getNombre() {
-        return nombre;
+
+    // Constructor principal
+    public Usuario(String nombreUsuario, String contrasena, Perfil perfil) {
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.perfil = perfil;
+        this.tareas = new ArrayList<>();
     }
-    public String getClave(){
-        return clave;
+
+    // Getters y setters
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
-    public void setClave(String clave){
-        this.clave = clave;
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void agregarTarea(Tarea tarea) {
+        tareas.add(tarea);
     }
 }
