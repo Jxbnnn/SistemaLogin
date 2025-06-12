@@ -1,11 +1,12 @@
 package Modelo;
+
 import java.time.LocalDateTime;
 
 public class Perfil {
     private String correo;
-    private LocalDataTime fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
-    public Perfil (String correo){
+    public Perfil(String correo) {
         this.correo = correo;
         this.fechaCreacion = LocalDateTime.now();
     }
@@ -14,7 +15,7 @@ public class Perfil {
         return correo;
     }
 
-    public LocalDateTime getFechaCreacion(){
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 }
