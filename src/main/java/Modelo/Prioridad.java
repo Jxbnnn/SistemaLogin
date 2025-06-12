@@ -1,4 +1,4 @@
 package Modelo;
 
-public class Prioridad {
+public enum Prioridad {
 }
