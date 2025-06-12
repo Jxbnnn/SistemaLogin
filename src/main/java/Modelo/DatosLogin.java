@@ -7,7 +7,6 @@ public class DatosLogin {
 
     public DatosLogin() {
         credenciales = new HashMap<>();
-        // Simulación de carga de datos
         credenciales.put("usuario1", "1234");
         credenciales.put("admin", "admin");
     }

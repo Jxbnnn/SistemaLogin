@@ -8,12 +8,10 @@ public class Usuario {
     private Perfil perfil;
     private ArrayList<Tarea> tareas;
 
-    // Constructor por defecto (opcional, por si lo necesitas)
     public Usuario() {
         this.tareas = new ArrayList<>();
     }
 
-    // Constructor principal
     public Usuario(String nombreUsuario, String contrasena, Perfil perfil) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
@@ -21,7 +19,6 @@ public class Usuario {
         this.tareas = new ArrayList<>();
     }
 
-    // Getters y setters
     public String getNombreUsuario() {
         return nombreUsuario;
     }
