@@ -53,4 +53,21 @@ public class VistaPrincipal extends JFrame {
 
         add(panel);
     }
+    private void cargarTareas() {
+        modeloTareas.clear();
+        for (Tarea tarea : usuario.getTareas()) {
+            String estado = tarea.estaFinalizada()? "(Finalizada)" : "(ACTIVA)";
+            modeloTareas.addElement("[" + tarea.getPrioridad() + "] " + tarea.getDescripcion() + " " + estado);
+        }
+    }
+    private void filtrar () {
+        String texto = campoBusqueda.getText().toLowerCase();
+        modeloTareas.clear();
+        for (Tarea tarea : usuario.getTareas()) {
+            if (tarea.getDescripcion().toLowerCase().contains(texto)) {
+                String estado = tarea.estaFinalizada() ? "(FINALIZADA)" : "(ACTIVA)";
+                modeloTareas.addElement("[" + tarea.getPrioridad() + "] " + tarea.getDescripcion() + " " + estado);
+            }
+        }
+    }
 }
