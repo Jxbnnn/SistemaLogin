@@ -11,5 +11,7 @@ public class VistaPrincipal extends JFrame {
     private final Usuario usuario;
     private final DatosSesion datosSesion;
     private DefaultListModel<String> modeloTareas;
+    private JList<String> listaTareas;
+    private JTextField campoBusqueda;
 
 }
