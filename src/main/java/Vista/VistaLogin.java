@@ -16,3 +16,18 @@ public class VistaLogin extends JFrame{
     private final GestorUsuarios gestorUsuarios = new GestorUsuarios();
     private final Login loginCotroller = new Login();
 }
+public VistaLogin() {
+    setTittle("Inicio de Sesión");
+    setSize(300,200);
+    setDefaultCloseOperation (EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
+
+    JPanel panel = new JPanel(new GrindLayout(3,2,5,5));
+    panel.add(new JLabel("Usuario:"));
+    panel.add(campoUsuario);
+    panel.add(new JLabel("Contraseña:"));
+    panel.add(campoClave);
+    panel.add(new JLabel());
+    panel.add(botonLogin);
+    add(panel);
+}
