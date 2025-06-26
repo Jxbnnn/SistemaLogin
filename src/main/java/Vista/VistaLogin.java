@@ -30,4 +30,15 @@ public VistaLogin() {
     panel.add(new JLabel());
     panel.add(botonLogin);
     add(panel);
+
+    botonLogin.addActionListener(e -> autenticarUsuario());
 }
+private void autenticarUsuario (){
+    String usuario = campoUsuario.getText();
+    String clave = new String(campoClave,getPassword());
+
+    if (loginController.autenticar(usuario, clave)) {
+        Usuario user = gestorUsuarios.obtenerUsuario(usuario);
+        DatosSesion sesion = new DatosSesion(user);
+        new VistaPrincipal(sesion).setVisible(true);
+        this.dispose();
